@@ -1,0 +1,26 @@
+sequenceDiagram
+    participant C as Caller
+    participant A as Algorithms
+    participant Q as PriorityQueue
+    participant ADJ as Adjacency List
+
+    C->>A: dijkstra(n, edges, src, dst)
+    A->>ADJ: Build adjacency list from edges
+    A->>Q: add([src, 0])
+    loop while !pq.isEmpty()
+        A->>Q: poll() → [u, dist]
+        alt u == dst
+            Q-->>A: found
+            A-->>C: dist
+        else continue if stale
+            A->>A: if dist > best[u] skip
+            A->>ADJ: get neighbors
+            loop for each neighbor
+                A->>A: if dist + w < best[v]
+                A->>Q: add([v, newDist])
+            end
+        end
+    end
+    A-->>C: -1 (unreachable)
+
+    Note over A,Q: O(E + V log V) with binary heap

@@ -1,0 +1,29 @@
+graph TD
+    Start([DSA Problem]) --> Cat{Problem Category?}
+    
+    Cat -->|"Array / String"| AH[Arrays & Hashing]
+    Cat -->|"Two pointers / window"| TP[Two Pointers & Sliding Window]
+    Cat -->|"Sorted search"| BS[Binary Search]
+    Cat -->|"Linked structure"| LL[Linked Lists]
+    Cat -->|"Hierarchy / hierarchy"| TG[Trees & Graphs]
+    Cat -->|"Optimal substructure"| DP[Dynamic Programming]
+    Cat -->|"Bits / math"| BM[Bit Manipulation & Math]
+    Cat -->|"Sorting"| SO[Sorting Algorithms]
+    Cat -->|"Shortest path"| SP[Graph Pathfinding]
+    Cat -->|"Backtracking"| BT[Backtracking]
+    Cat -->|"String match"| SA[String Algorithms]
+    
+    AH --> Q1[Q1: Max Subarray<br/>Q2: Palindromes<br/>Q3: Two Sum<br/>Q6: Group Anagrams<br/>Q8: First Unique]
+    TP --> Q7[Q7: Max Area<br/>Q9: 3-Sum<br/>Q10: Longest Substr]
+    BS --> Q15[Q15: Binary Search<br/>Q16: Rotated Search<br/>Q38: Interpolation]
+    LL --> Q19[Q19: Reverse List<br/>Q20: Cycle Floyd<br/>Q21: Merge<br/>Q22: Remove Nth]
+    TG --> Q23[Q23: Max Depth<br/>Q26: Num Islands<br/>Q28: Course Schedule<br/>Q29: Dijkstra]
+    DP --> Q31[Q31: Fibonacci<br/>Q33: Coin Change<br/>Q35: Edit Distance<br/>Q36: Knapsack]
+    BM --> Q37[Q37: Single Number XOR<br/>Q38: Count Bits<br/>Q39: Power of 2]
+    SO --> A1[A1: Bubble<br/>A2: Merge<br/>A3: Quick<br/>A4: Heap]
+    SP --> D1[Dijkstra / Bellman-Ford<br/>Floyd-Warshall / A*]
+    BT --> A28[A28: Subsets<br/>A29: Permutations<br/>A30: N-Queens]
+    SA --> A25[A25: KMP<br/>A26: Rabin-Karp<br/>A27: Trie]
+
+    style Start fill:#2d3561,stroke:#ffd700,color:#fff
+    style Cat fill:#1a1f3a,stroke:#ffd700,color:#fff

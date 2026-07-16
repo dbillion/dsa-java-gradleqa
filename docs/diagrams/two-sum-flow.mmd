@@ -1,0 +1,16 @@
+flowchart TD
+    A([Input: nums, target]) --> B[i equals 0, seen equals HashMap]
+    B --> C{i less than length?}
+    C -->|No| X([Throw NoSuchElementException])
+    C -->|Yes| D[complement equals target minus nums i]
+    D --> E{seen contains complement?}
+    E -->|Yes| F([Return seen complement and i])
+    E -->|No| G[seen.put nums i, i]
+    G --> H[i plus plus]
+    H --> C
+
+    style A fill:#2d3561,stroke:#ffd700,color:#fff
+    style F fill:#2d3561,stroke:#ffd700,color:#fff
+    style X fill:#8b0000,stroke:#ff6b6b,color:#fff
+    style C fill:#1a1f3a,stroke:#ffd700,color:#fff
+    style E fill:#1a1f3a,stroke:#ffd700,color:#fff

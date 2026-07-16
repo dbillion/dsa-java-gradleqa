@@ -1,0 +1,23 @@
+graph TD
+    A[Q19: Reverse Linked List] --> A1[iterative: prev/cur/next swap]
+    B[Q20: Detect Cycle] --> B1[Floyd: slow + fast pointers]
+    C[Q21: Merge Two Sorted] --> C1[recursive compare heads]
+    D[Q22: Remove Nth From End] --> D1[dummy + two pointers gap n]
+
+    E[Q23: Max Depth] --> E1[recursive 1+max left,right]
+    F[Q24: Inorder] --> F1[Stream.concat left,val,right]
+    G[Q25: Is Same Tree] --> G1[recursive structural + val]
+    H[Q26: Num Islands] --> H1[DFS grid mark visited]
+    I[Q27: Clone Graph] --> I1[BFS + map old→new]
+    J[Q28: Course Schedule] --> J1[Kahn topological sort]
+    K[Q29: Dijkstra] --> K1[PriorityQueue relax edges]
+    L[Q30: BFS Shortest Path] --> L1[queue + seen set]
+
+    M[Q22-gap: LCA] --> M1[recursive left/right null check]
+    N[Q23-gap: Valid BST] --> N1[inorder strictly increasing]
+    O[Q26-gap: Diameter] --> O1[max depth pair sum]
+    P[Q27-gap: Mirror] --> P1[swap left/right recursive]
+
+    style A fill:#2d3561,stroke:#ffd700,color:#fff
+    style E fill:#2d3561,stroke:#ffd700,color:#fff
+    style M fill:#1a1f3a,stroke:#ffd700,color:#fff

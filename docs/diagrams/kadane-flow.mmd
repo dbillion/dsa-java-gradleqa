@@ -1,0 +1,19 @@
+flowchart TD
+    A([Input: nums array]) --> B[i equals 1]
+    B --> C{currentSum less than 0?}
+    C -->|Yes| D[currentSum reset to nums i]
+    C -->|No| E[currentSum equals currentSum plus nums i]
+    D --> F{i less than length?}
+    E --> F
+    F -->|No| G([Return bestSum and subarray])
+    F -->|Yes| H{currentSum greater than bestSum?}
+    H -->|Yes| I[Update bestSum, bestStart, bestEnd]
+    H -->|No| J[i plus plus]
+    I --> J
+    J --> C
+
+    style A fill:#2d3561,stroke:#ffd700,color:#fff
+    style G fill:#2d3561,stroke:#ffd700,color:#fff
+    style C fill:#1a1f3a,stroke:#ffd700,color:#fff
+    style H fill:#1a1f3a,stroke:#ffd700,color:#fff
+    style F fill:#1a1f3a,stroke:#ffd700,color:#fff

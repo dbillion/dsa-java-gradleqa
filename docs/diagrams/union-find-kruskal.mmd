@@ -1,0 +1,23 @@
+graph TD
+    A[UnionFind] --> B[parent array]
+    A --> C[rank array]
+    B --> D[find with path compression]
+    C --> E[union with rank merge]
+    D --> F{ra equals rb?}
+    F -->|Yes| G[return false]
+    F -->|No| H[merge by rank]
+    H --> I[return true]
+
+    J[Kruskal MST] --> K[sort edges by weight]
+    K --> L[for each edge call uf.union]
+    L --> M{union succeeded?}
+    M -->|Yes| N[add weight, count plus plus]
+    M -->|No| O[skip cycle]
+    N --> P{count equals n minus 1?}
+    P -->|Yes| Q([Return total weight])
+    P -->|No| R([Return negative 1])
+
+    style A fill:#2d3561,stroke:#ffd700,color:#fff
+    style J fill:#2d3561,stroke:#ffd700,color:#fff
+    style Q fill:#2d3561,stroke:#ffd700,color:#fff
+    style R fill:#8b0000,stroke:#ff6b6b,color:#fff

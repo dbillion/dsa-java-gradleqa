@@ -1,0 +1,34 @@
+erDiagram
+    LIST_NODE {
+        int val
+        ListNode next
+    }
+    TREE_NODE {
+        int val
+        TreeNode left
+        TreeNode right
+    }
+    GRAPH_NODE {
+        int val
+        List~GraphNode~ neighbors
+    }
+    UNION_FIND {
+        int[] parent
+        int[] rank
+    }
+    SEGMENT_TREE {
+        int[] tree
+        int n
+    }
+    TRIE_NODE {
+        Map~char,Node~ ch
+        bool end
+    }
+
+    LIST_NODE ||--o{ LIST_NODE : "next"
+    TREE_NODE ||--o| TREE_NODE : "left"
+    TREE_NODE ||--o| TREE_NODE : "right"
+    GRAPH_NODE ||--o{ GRAPH_NODE : "neighbors"
+    UNION_FIND ||--o{ UNION_FIND : "parent (path compression)"
+    SEGMENT_TREE ||--o{ SEGMENT_TREE : "tree[2*node], tree[2*node+1]"
+    TRIE_NODE ||--o{ TRIE_NODE : "ch (children)"

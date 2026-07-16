@@ -1,0 +1,26 @@
+sequenceDiagram
+    participant U as User
+    participant M as Main
+    participant A as Algorithms
+    participant HM as HashMap
+
+    U->>M: Run program
+    M->>A: twoSum(nums, target)
+    A->>HM: new HashMap()
+    HM-->>A: empty map
+    loop for i = 0 to n-1
+        A->>A: complement = target - nums[i]
+        A->>HM: containsKey(complement)
+        alt found
+            HM-->>A: true
+            A-->>M: [seen[complement], i]
+            M-->>U: Result
+        else not found
+            HM-->>A: false
+            A->>HM: put(nums[i], i)
+        end
+    end
+    A-->>M: NoSuchElementException
+    M-->>U: Error
+
+    Note over A,HM: O(n) time, O(n) space
