@@ -723,4 +723,493 @@ public final class Algorithms {
     public static <T> void copy(List<? extends T> src, List<? super T> dst) {
         src.forEach(dst::add);
     }
+
+    // ====================================================================
+    // SECTION 11 — GAPS FILLED from dsa-ultimate.md roadmap
+    // ====================================================================
+
+    // ---- Stacks & Queues (Q16-Q20) ----
+    /** Q16: stack backed by an array. */
+    public static class ArrayStack {
+        private final int[] a; private int top = 0;
+        public ArrayStack(int cap) { a = new int[cap]; }
+        public void push(int v) { a[top++] = v; }
+        public int pop() { return a[--top]; }
+        public int top() { return a[top - 1]; }
+        public boolean isEmpty() { return top == 0; }
+    }
+
+    /** Q17: min-stack (O(1) push/pop/top/min). */
+    public static class MinStack {
+        private final Deque<int[]> d = new ArrayDeque<>();
+        public void push(int v) { int min = d.isEmpty() ? v : Math.min(v, d.peek()[1]); d.push(new int[]{v, min}); }
+        public void pop() { d.pop(); }
+        public int top() { return d.peek()[0]; }
+        public int getMin() { return d.peek()[1]; }
+    }
+
+    /** Q18: circular queue (ring buffer). */
+    public static class CircularQueue {
+        private final int[] buf; private int head = 0, tail = 0, size = 0;
+        public CircularQueue(int cap) { buf = new int[cap]; }
+        public boolean enqueue(int v) {
+            if (size == buf.length) return false;
+            buf[tail] = v; tail = (tail + 1) % buf.length; size++; return true;
+        }
+        public Integer dequeue() {
+            if (size == 0) return null;
+            int v = buf[head]; head = (head + 1) % buf.length; size--; return v;
+        }
+        public boolean isEmpty() { return size == 0; }
+    }
+
+    /** Q19: max-stack (O(1) max). */
+    public static class MaxStack {
+        private final Deque<int[]> d = new ArrayDeque<>();
+        public void push(int v) { int mx = d.isEmpty() ? v : Math.max(v, d.peek()[1]); d.push(new int[]{v, mx}); }
+        public void pop() { d.pop(); }
+        public int top() { return d.peek()[0]; }
+        public int getMax() { return d.peek()[1]; }
+    }
+
+    /** Q20: queue implemented with two stacks. */
+    public static class QueueWithStacks {
+        private final Deque<Integer> in = new ArrayDeque<>(), out = new ArrayDeque<>();
+        public void enqueue(int v) { in.push(v); }
+        public Integer dequeue() {
+            if (out.isEmpty()) while (!in.isEmpty()) out.push(in.pop());
+            return out.isEmpty() ? null : out.pop();
+        }
+    }
+
+    // ---- More Arrays (Q5, Q6, Q9) ----
+    /** Q5: missing number in 0..n (XOR trick). */
+    public static int missingNumber(int[] nums) {
+        int x = nums.length;
+        for (int i = 0; i < nums.length; i++) x ^= i ^ nums[i];
+        return x;
+    }
+
+    /** Q6: merge two sorted arrays into one sorted array. */
+    public static int[] mergeTwoSorted(int[] a, int[] b) {
+        int[] out = new int[a.length + b.length]; int i = 0, j = 0, k = 0;
+        while (i < a.length && j < b.length) out[k++] = a[i] <= b[j] ? a[i++] : b[j++];
+        while (i < a.length) out[k++] = a[i++];
+        while (j < b.length) out[k++] = b[j++];
+        return out;
+    }
+
+    /** Q9: remove duplicates from sorted array in place; returns new length. */
+    public static int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0;
+        int k = 1;
+        for (int i = 1; i < nums.length; i++) if (nums[i] != nums[k - 1]) nums[k++] = nums[i];
+        return k;
+    }
+
+    // ---- BST / Tree ops (Q22, Q23, Q24, Q26, Q27) ----
+    /** Q22: lowest common ancestor in a binary tree. */
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) return root;
+        var left = lowestCommonAncestor(root.left, p, q);
+        var right = lowestCommonAncestor(root.right, p, q);
+        return left == null ? right : (right == null ? left : root);
+    }
+
+    /** Q23: validate BST (inorder must be strictly increasing). */
+    public static boolean isValidBST(TreeNode root) {
+        Integer[] prev = {null};
+        return inorderValid(root, prev);
+    }
+    private static boolean inorderValid(TreeNode n, Integer[] prev) {
+        if (n == null) return true;
+        if (!inorderValid(n.left, prev)) return false;
+        if (prev[0] != null && n.val <= prev[0]) return false;
+        prev[0] = n.val;
+        return inorderValid(n.right, prev);
+    }
+
+    /** Q24: serialize a binary tree to a level-order list (null children omitted). */
+    public static List<Integer> serializeTree(TreeNode root) {
+        var out = new ArrayList<Integer>();
+        if (root == null) return out;
+        var q = new ArrayDeque<TreeNode>(); q.add(root);
+        while (!q.isEmpty()) {
+            var cur = q.poll();
+            out.add(cur.val);
+            if (cur.left != null) q.add(cur.left);
+            if (cur.right != null) q.add(cur.right);
+        }
+        return out;
+    }
+
+    /** Q26: diameter of a binary tree (longest path between any two nodes). */
+    public static int diameter(TreeNode root) {
+        int[] best = {0};
+        depthForDiameter(root, best);
+        return best[0];
+    }
+    private static int depthForDiameter(TreeNode n, int[] best) {
+        if (n == null) return 0;
+        int l = depthForDiameter(n.left, best);
+        int r = depthForDiameter(n.right, best);
+        best[0] = Math.max(best[0], l + r);
+        return 1 + Math.max(l, r);
+    }
+
+    /** Q27: mirror a binary tree (in place). */
+    public static void mirror(TreeNode n) {
+        if (n == null) return;
+        var t = n.left; n.left = n.right; n.right = t;
+        mirror(n.left); mirror(n.right);
+    }
+
+    // ---- Graph extras (Q31, Q32, Q33, Q34, Bellman-Ford, Floyd-Warshall, A*, Flood Fill) ----
+    /** Q31: detect cycle in an undirected graph (DFS + parent tracking). */
+    public static boolean hasCycleUndirected(int n, int[][] edges) {
+        var adj = new ArrayList<List<Integer>>();
+        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
+        for (var e : edges) { adj.get(e[0]).add(e[1]); adj.get(e[1]).add(e[0]); }
+        var seen = new boolean[n];
+        for (int i = 0; i < n; i++)
+            if (!seen[i] && dfsCycle(adj, i, -1, seen)) return true;
+        return false;
+    }
+    private static boolean dfsCycle(List<List<Integer>> adj, int u, int p, boolean[] seen) {
+        seen[u] = true;
+        for (int v : adj.get(u)) {
+            if (!seen[v]) { if (dfsCycle(adj, v, u, seen)) return true; }
+            else if (v != p) return true;
+        }
+        return false;
+    }
+
+    /** Q32: check if an undirected graph is bipartite (2-color). */
+    public static boolean isBipartite(int n, int[][] edges) {
+        var adj = new ArrayList<List<Integer>>();
+        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
+        for (var e : edges) { adj.get(e[0]).add(e[1]); adj.get(e[1]).add(e[0]); }
+        int[] color = new int[n];
+        for (int i = 0; i < n; i++) {
+            if (color[i] != 0) continue;
+            color[i] = 1; var q = new ArrayDeque<Integer>(); q.add(i);
+            while (!q.isEmpty()) {
+                int u = q.poll();
+                for (int v : adj.get(u)) {
+                    if (color[v] == 0) { color[v] = -color[u]; q.add(v); }
+                    else if (color[v] == color[u]) return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /** Q33: number of connected components in an undirected graph. */
+    public static int connectedComponents(int n, int[][] edges) {
+        var uf = new UnionFind(n);
+        for (var e : edges) uf.union(e[0], e[1]);
+        int count = 0;
+        for (int i = 0; i < n; i++) if (uf.find(i) == i) count++;
+        return count;
+    }
+
+    /** Q34: find bridges in an undirected graph (Tarjan). Returns list of [u,v]. */
+    public static List<List<Integer>> findBridges(int n, int[][] edges) {
+        var adj = new ArrayList<List<Integer>>();
+        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
+        for (var e : edges) { adj.get(e[0]).add(e[1]); adj.get(e[1]).add(e[0]); }
+        int[] disc = new int[n], low = new int[n]; int[] time = {0};
+        boolean[] visited = new boolean[n];
+        var bridges = new ArrayList<List<Integer>>();
+        for (int i = 0; i < n; i++)
+            if (!visited[i]) tarjan(adj, i, -1, disc, low, time, visited, bridges);
+        return bridges;
+    }
+    private static void tarjan(List<List<Integer>> adj, int u, int p, int[] disc, int[] low,
+                               int[] time, boolean[] visited, List<List<Integer>> bridges) {
+        visited[u] = true; disc[u] = low[u] = ++time[0];
+        for (int v : adj.get(u)) {
+            if (v == p) continue;
+            if (!visited[v]) {
+                tarjan(adj, v, u, disc, low, time, visited, bridges);
+                low[u] = Math.min(low[u], low[v]);
+                if (low[v] > disc[u]) bridges.add(List.of(u, v));
+            } else low[u] = Math.min(low[u], disc[v]);
+        }
+    }
+
+    /** Bellman-Ford: shortest paths from src; returns dist array or null if negative cycle. */
+    public static int[] bellmanFord(int n, int[][] edges, int src) {
+        int[] dist = new int[n];
+        Arrays.fill(dist, Integer.MAX_VALUE / 2); dist[src] = 0;
+        for (int i = 0; i < n - 1; i++)
+            for (var e : edges) if (dist[e[0]] + e[2] < dist[e[1]]) dist[e[1]] = dist[e[0]] + e[2];
+        for (var e : edges) if (dist[e[0]] + e[2] < dist[e[1]]) return null;
+        return dist;
+    }
+
+    /** Floyd-Warshall: all-pairs shortest paths (returns n x n matrix). */
+    public static int[][] floydWarshall(int n, int[][] edges) {
+        int[][] d = new int[n][n];
+        for (int i = 0; i < n; i++) Arrays.fill(d[i], Integer.MAX_VALUE / 2);
+        for (int i = 0; i < n; i++) d[i][i] = 0;
+        for (var e : edges) d[e[0]][e[1]] = e[2];
+        for (int k = 0; k < n; k++)
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    if (d[i][k] + d[k][j] < d[i][j]) d[i][j] = d[i][k] + d[k][j];
+        return d;
+    }
+
+    /** A* shortest path on a grid using Manhattan heuristic. */
+    public static OptionalInt astar(char[][] grid, int[] start, int[] end) {
+        int m = grid.length, n = grid[0].length;
+        var open = new PriorityQueue<int[]>(Comparator.comparingInt(a -> a[2]));
+        open.add(new int[]{start[0], start[1], manhattan(start[0], start[1], end)});
+        var g = new HashMap<String, Integer>(); g.put(start[0] + "," + start[1], 0);
+        var seen = new HashSet<String>();
+        while (!open.isEmpty()) {
+            var cur = open.poll();
+            String key = cur[0] + "," + cur[1];
+            if (seen.contains(key)) continue; seen.add(key);
+            if (cur[0] == end[0] && cur[1] == end[1]) return OptionalInt.of(cur[2] - manhattan(cur[0], cur[1], end));
+            for (int[] d : new int[][]{{1,0},{-1,0},{0,1},{0,-1}}) {
+                int nr = cur[0] + d[0], nc = cur[1] + d[1];
+                if (nr < 0 || nc < 0 || nr >= m || nc >= n || grid[nr][nc] == '#') continue;
+                int ng = g.get(key) + 1;
+                String nk = nr + "," + nc;
+                if (ng < g.getOrDefault(nk, Integer.MAX_VALUE)) {
+                    g.put(nk, ng); open.add(new int[]{nr, nc, ng + manhattan(nr, nc, end)});
+                }
+            }
+        }
+        return OptionalInt.empty();
+    }
+    private static int manhattan(int r, int c, int[] end) { return Math.abs(r - end[0]) + Math.abs(c - end[1]); }
+
+    /** Flood Fill (BFS) — replaces target color with new color, returns the grid. */
+    public static int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int target = image[sr][sc];
+        if (target == color) return image;
+        var q = new ArrayDeque<int[]>(); q.add(new int[]{sr, sc});
+        while (!q.isEmpty()) {
+            var p = q.poll();
+            if (image[p[0]][p[1]] != target) continue;
+            image[p[0]][p[1]] = color;
+            for (int[] d : new int[][]{{1,0},{-1,0},{0,1},{0,-1}}) {
+                int nr = p[0] + d[0], nc = p[1] + d[1];
+                if (nr >= 0 && nc >= 0 && nr < image.length && nc < image[0].length && image[nr][nc] == target)
+                    q.add(new int[]{nr, nc});
+            }
+        }
+        return image;
+    }
+
+    // ---- Search extras (Q38 interpolation, Q39 quickselect, Q40 inversions) ----
+    /** Q38: interpolation search (works well on uniformly distributed sorted data). */
+    public static int interpolationSearch(int[] a, int key) {
+        int lo = 0, hi = a.length - 1;
+        while (lo <= hi && key >= a[lo] && key <= a[hi]) {
+            if (lo == hi) return a[lo] == key ? lo : -1;
+            int pos = lo + (key - a[lo]) * (hi - lo) / (a[hi] - a[lo]);
+            if (a[pos] == key) return pos;
+            if (a[pos] < key) lo = pos + 1; else hi = pos - 1;
+        }
+        return -1;
+    }
+
+    /** Q39: kth smallest element (quickselect, average O(n)). */
+    public static int kthSmallest(int[] a, int k) {
+        var list = Arrays.stream(a).boxed().collect(Collectors.toList());
+        return quickselect(list, k - 1);
+    }
+    private static int quickselect(List<Integer> l, int k) {
+        if (l.size() == 1) return l.get(0);
+        int pivot = l.get(l.size() / 2);
+        var lo = new ArrayList<Integer>();
+        var hi = new ArrayList<Integer>();
+        var eq = new ArrayList<Integer>();
+        for (int x : l) { if (x < pivot) lo.add(x); else if (x > pivot) hi.add(x); else eq.add(x); }
+        if (k < lo.size()) return quickselect(lo, k);
+        if (k < lo.size() + eq.size()) return pivot;
+        return quickselect(hi, k - lo.size() - eq.size());
+    }
+
+    /** Q40: count inversions in an array (merge-sort based, O(n log n)). */
+    public static int countInversions(int[] a) {
+        return mergeSortCount(a, 0, a.length - 1, new int[a.length]);
+    }
+    private static int mergeSortCount(int[] a, int l, int r, int[] tmp) {
+        if (l >= r) return 0;
+        int mid = (l + r) / 2;
+        int cnt = mergeSortCount(a, l, mid, tmp) + mergeSortCount(a, mid + 1, r, tmp);
+        int i = l, j = mid + 1, k = l;
+        while (i <= mid && j <= r) {
+            if (a[i] <= a[j]) tmp[k++] = a[i++];
+            else { tmp[k++] = a[j++]; cnt += mid - i + 1; }
+        }
+        while (i <= mid) tmp[k++] = a[i++];
+        while (j <= r) tmp[k++] = a[j++];
+        for (int x = l; x <= r; x++) a[x] = tmp[x];
+        return cnt;
+    }
+
+    // ---- More sorts (selection, insertion) ----
+    /** A21: selection sort. */
+    public static void selectionSort(int[] a) {
+        for (int i = 0; i < a.length - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < a.length; j++) if (a[j] < a[min]) min = j;
+            int t = a[i]; a[i] = a[min]; a[min] = t;
+        }
+    }
+
+    /** A22: insertion sort. */
+    public static void insertionSort(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            int key = a[i], j = i - 1;
+            while (j >= 0 && a[j] > key) { a[j + 1] = a[j]; j--; }
+            a[j + 1] = key;
+        }
+    }
+
+    // ---- Number theory (LCM, Euler's totient) ----
+    /** A23: least common multiple via GCD (long-safe). */
+    public static long lcm(long a, long b) { return a / gcd((int) a, (int) b) * b; }
+
+    /** A24: Euler's totient function φ(n). */
+    public static int eulerTotient(int n) {
+        int result = n;
+        for (int p = 2; p * p <= n; p++) {
+            if (n % p == 0) { while (n % p == 0) n /= p; result -= result / p; }
+        }
+        if (n > 1) result -= result / n;
+        return result;
+    }
+
+    // ---- String algorithms (KMP, Rabin-Karp, Trie) ----
+    /** A25: KMP substring search — returns first index or -1. */
+    public static int kmpSearch(String text, String pat) {
+        int n = text.length(), m = pat.length();
+        int[] lps = new int[m];
+        for (int i = 1, len = 0; i < m; ) {
+            if (pat.charAt(i) == pat.charAt(len)) lps[i++] = ++len;
+            else if (len != 0) len = lps[len - 1]; else i++;
+        }
+        for (int i = 0, j = 0; i < n; ) {
+            if (text.charAt(i) == pat.charAt(j)) { i++; j++; if (j == m) return i - m; }
+            else if (j != 0) j = lps[j - 1]; else i++;
+        }
+        return -1;
+    }
+
+    /** A26: Rabin-Karp substring search (rolling hash, base 31, mod 1e9+7). */
+    public static int rabinKarp(String text, String pat) {
+        final int B = 31, MOD = 1_000_000_007;
+        long ph = 0, pw = 1;
+        for (char c : pat.toCharArray()) { ph = (ph * B + c) % MOD; pw = (pw * B) % MOD; }
+        long th = 0;
+        for (int i = 0; i < text.length(); i++) {
+            th = (th * B + text.charAt(i)) % MOD;
+            if (i >= pat.length()) th = (th - pw * text.charAt(i - pat.length()) % MOD + MOD) % MOD;
+            if (i >= pat.length() - 1 && th == ph && text.substring(i - pat.length() + 1, i + 1).equals(pat))
+                return i - pat.length() + 1;
+        }
+        return -1;
+    }
+
+    /** A27: Trie (prefix tree) for autocomplete-style insert/search. */
+    public static class Trie {
+        private static class Node { Map<Character, Node> ch = new HashMap<>(); boolean end = false; }
+        private final Node root = new Node();
+        public void insert(String w) {
+            Node cur = root;
+            for (char c : w.toCharArray()) cur = cur.ch.computeIfAbsent(c, k -> new Node());
+            cur.end = true;
+        }
+        public boolean search(String w) {
+            Node cur = root;
+            for (char c : w.toCharArray()) { cur = cur.ch.get(c); if (cur == null) return false; }
+            return cur.end;
+        }
+        public boolean startsWith(String pre) {
+            Node cur = root;
+            for (char c : pre.toCharArray()) { cur = cur.ch.get(c); if (cur == null) return false; }
+            return true;
+        }
+    }
+
+    // ---- Backtracking (subsets, permutations, N-queens) ----
+    /** A28: all subsets (power set) via backtracking. */
+    public static List<List<Integer>> subsets(int[] nums) {
+        var res = new ArrayList<List<Integer>>(); var cur = new ArrayList<Integer>();
+        backtrackSubsets(nums, 0, cur, res);
+        return res;
+    }
+    private static void backtrackSubsets(int[] nums, int i, List<Integer> cur, List<List<Integer>> res) {
+        if (i == nums.length) { res.add(new ArrayList<>(cur)); return; }
+        cur.add(nums[i]); backtrackSubsets(nums, i + 1, cur, res); cur.remove(cur.size() - 1);
+        backtrackSubsets(nums, i + 1, cur, res);
+    }
+
+    /** A29: all permutations via backtracking. */
+    public static List<List<Integer>> permutations(int[] nums) {
+        var res = new ArrayList<List<Integer>>();
+        var used = new boolean[nums.length];
+        backtrackPerm(nums, new ArrayList<>(), used, res);
+        return res;
+    }
+    private static void backtrackPerm(int[] nums, List<Integer> cur, boolean[] used, List<List<Integer>> res) {
+        if (cur.size() == nums.length) { res.add(new ArrayList<>(cur)); return; }
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i]) continue;
+            used[i] = true; cur.add(nums[i]); backtrackPerm(nums, cur, used, res); cur.remove(cur.size() - 1); used[i] = false;
+        }
+    }
+
+    /** A30: N-queens — number of valid placements on an n x n board. */
+    public static int nQueens(int n) {
+        int[] cols = new int[n]; int[] count = {0};
+        placeQueens(n, 0, cols, new boolean[n], new boolean[2 * n], new boolean[2 * n], count);
+        return count[0];
+    }
+    private static void placeQueens(int n, int r, int[] cols, boolean[] usedC, boolean[] diag1, boolean[] diag2, int[] count) {
+        if (r == n) { count[0]++; return; }
+        for (int c = 0; c < n; c++) {
+            if (usedC[c] || diag1[r + c] || diag2[r - c + n]) continue;
+            cols[r] = c; usedC[c] = diag1[r + c] = diag2[r - c + n] = true;
+            placeQueens(n, r + 1, cols, usedC, diag1, diag2, count);
+            usedC[c] = diag1[r + c] = diag2[r - c + n] = false;
+        }
+    }
+
+    // ---- Segment Tree (point update, range sum query) ----
+    /** A31: segment tree for range-sum + point update. */
+    public static class SegmentTree {
+        private final int[] tree; private final int n;
+        public SegmentTree(int[] a) {
+            n = a.length; tree = new int[4 * n]; build(a, 1, 0, n - 1);
+        }
+        private void build(int[] a, int node, int l, int r) {
+            if (l == r) { tree[node] = a[l]; return; }
+            int m = (l + r) / 2;
+            build(a, 2 * node, l, m); build(a, 2 * node + 1, m + 1, r);
+            tree[node] = tree[2 * node] + tree[2 * node + 1];
+        }
+        public void update(int idx, int val) { update(1, 0, n - 1, idx, val); }
+        private void update(int node, int l, int r, int idx, int val) {
+            if (l == r) { tree[node] = val; return; }
+            int m = (l + r) / 2;
+            if (idx <= m) update(2 * node, l, m, idx, val); else update(2 * node + 1, m + 1, r, idx, val);
+            tree[node] = tree[2 * node] + tree[2 * node + 1];
+        }
+        public int query(int ql, int qr) { return query(1, 0, n - 1, ql, qr); }
+        private int query(int node, int l, int r, int ql, int qr) {
+            if (ql > r || qr < l) return 0;
+            if (ql <= l && r <= qr) return tree[node];
+            int m = (l + r) / 2;
+            return query(2 * node, l, m, ql, qr) + query(2 * node + 1, m + 1, r, ql, qr);
+        }
+    }
 }
+

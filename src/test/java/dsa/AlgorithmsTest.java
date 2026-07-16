@@ -243,4 +243,147 @@ class AlgorithmsTest {
         Algorithms.copy(src, dst);
         assertEquals(List.of(1, 2, 3), dst);
     }
+
+    // ===== Section 11: filled gaps (Q5/6/9, Q16-20, Q22-27, Q31-34, Q38-40, A21-31) =====
+    @Test void Q5_missingNumber() { assertEquals(2, Algorithms.missingNumber(new int[]{3,0,1})); }
+    @Test void Q6_mergeTwoSorted() {
+        assertArrayEquals(new int[]{1,2,3,4,5,6}, Algorithms.mergeTwoSorted(new int[]{1,3,5}, new int[]{2,4,6}));
+    }
+    @Test void Q9_removeDuplicates() {
+        int[] a = {1,1,2,2,3}; assertEquals(3, Algorithms.removeDuplicates(a));
+        assertArrayEquals(new int[]{1,2,3,2,3}, a);
+    }
+    @Test void Q16_arrayStack() {
+        var s = new Algorithms.ArrayStack(3); s.push(1); s.push(2);
+        assertEquals(2, s.top()); assertEquals(2, s.pop()); assertEquals(1, s.pop());
+    }
+    @Test void Q17_minStack() {
+        var s = new Algorithms.MinStack(); s.push(3); s.push(1); s.push(2);
+        assertEquals(1, s.getMin()); s.pop(); assertEquals(1, s.getMin());
+    }
+    @Test void Q18_circularQueue() {
+        var q = new Algorithms.CircularQueue(3);
+        assertTrue(q.enqueue(1)); assertTrue(q.enqueue(2)); assertEquals(1, q.dequeue());
+        assertEquals(2, q.dequeue()); assertTrue(q.isEmpty());
+    }
+    @Test void Q19_maxStack() {
+        var s = new Algorithms.MaxStack(); s.push(1); s.push(3); s.push(2);
+        assertEquals(3, s.getMax()); s.pop(); assertEquals(3, s.top()); assertEquals(3, s.getMax());
+    }
+    @Test void Q20_queueWithStacks() {
+        var q = new Algorithms.QueueWithStacks(); q.enqueue(1); q.enqueue(2);
+        assertEquals(1, q.dequeue()); assertEquals(2, q.dequeue());
+    }
+    @Test void Q22_lca() {
+        Algorithms.TreeNode r = new Algorithms.TreeNode(1);
+        r.left = new Algorithms.TreeNode(2); r.right = new Algorithms.TreeNode(3);
+        r.left.left = new Algorithms.TreeNode(4); r.left.right = new Algorithms.TreeNode(5);
+        assertEquals(2, Algorithms.lowestCommonAncestor(r, r.left.left, r.left.right).val);
+    }
+    @Test void Q23_isValidBST() {
+        Algorithms.TreeNode r = new Algorithms.TreeNode(2);
+        r.left = new Algorithms.TreeNode(1); r.right = new Algorithms.TreeNode(3);
+        assertTrue(Algorithms.isValidBST(r));
+        Algorithms.TreeNode bad = new Algorithms.TreeNode(5);
+        bad.left = new Algorithms.TreeNode(6); bad.right = new Algorithms.TreeNode(7);
+        assertFalse(Algorithms.isValidBST(bad));
+    }
+    @Test void Q24_serializeTree() {
+        Algorithms.TreeNode r = new Algorithms.TreeNode(1);
+        r.left = new Algorithms.TreeNode(2); r.right = new Algorithms.TreeNode(3);
+        assertEquals(List.of(1,2,3), Algorithms.serializeTree(r));
+    }
+    @Test void Q26_diameter() {
+        Algorithms.TreeNode r = new Algorithms.TreeNode(1);
+        r.left = new Algorithms.TreeNode(2); r.left.left = new Algorithms.TreeNode(4);
+        r.right = new Algorithms.TreeNode(3); r.right.right = new Algorithms.TreeNode(5);
+        assertEquals(4, Algorithms.diameter(r)); // 4->2->1->3->5 path length 4
+    }
+    @Test void Q27_mirror() {
+        Algorithms.TreeNode r = new Algorithms.TreeNode(1);
+        r.left = new Algorithms.TreeNode(2); r.right = new Algorithms.TreeNode(3);
+        Algorithms.mirror(r);
+        assertEquals(3, r.left.val); assertEquals(2, r.right.val);
+    }
+    @Test void Q31_cycleUndirected() {
+        assertTrue(Algorithms.hasCycleUndirected(3, new int[][]{{0,1},{1,2},{2,0}}));
+        assertFalse(Algorithms.hasCycleUndirected(3, new int[][]{{0,1},{1,2}}));
+    }
+    @Test void Q32_bipartite() {
+        assertTrue(Algorithms.isBipartite(4, new int[][]{{0,1},{1,2},{2,3},{3,0}}));
+        assertFalse(Algorithms.isBipartite(3, new int[][]{{0,1},{1,2},{2,0}}));
+    }
+    @Test void Q33_connectedComponents() {
+        assertEquals(2, Algorithms.connectedComponents(5, new int[][]{{0,1},{1,2},{3,4}}));
+    }
+    @Test void Q34_bridges() {
+        // path 0-1-2 has bridge [0,1] and [1,2]
+        var b = Algorithms.findBridges(3, new int[][]{{0,1},{1,2}});
+        assertEquals(2, b.size());
+    }
+    @Test void Q38_interpolationSearch() {
+        int[] a = {10,20,30,40,50};
+        assertEquals(2, Algorithms.interpolationSearch(a, 30));
+        assertEquals(-1, Algorithms.interpolationSearch(a, 35));
+    }
+    @Test void Q39_kthSmallEst() { assertEquals(7, Algorithms.kthSmallest(new int[]{7,10,4,3,20,15}, 3)); }
+    @Test void Q40_countInversions() { assertEquals(3, Algorithms.countInversions(new int[]{2,4,1,3,5})); }
+    @Test void bellmanFord() {
+        int[][] e = {{0,1,4},{0,2,1},{2,1,2},{1,3,1},{2,3,5}};
+        int[] d = Algorithms.bellmanFord(4, e, 0);
+        assertArrayEquals(new int[]{0,3,1,4}, d);
+    }
+    @Test void floydWarshall() {
+        int[][] e = {{0,1,4},{0,2,1},{2,1,2},{1,3,1},{2,3,5}};
+        int[][] d = Algorithms.floydWarshall(4, e);
+        assertEquals(4, d[0][3]);
+    }
+    @Test void astar() {
+        char[][] g = {{'.','.','.'},{'.','#','.'},{'.','.','.'}};
+        assertEquals(4, Algorithms.astar(g, new int[]{0,0}, new int[]{2,2}).getAsInt());
+    }
+    @Test void floodFill() {
+        int[][] img = {{1,1,1},{1,1,0},{1,0,1}};
+        int[][] out = Algorithms.floodFill(img, 1, 1, 2);
+        assertEquals(2, out[0][0]); assertEquals(0, out[1][2]);
+    }
+    @Test void A21_selectionSort() {
+        int[] a = {5,2,8,1,9}; Algorithms.selectionSort(a);
+        assertArrayEquals(new int[]{1,2,5,8,9}, a);
+    }
+    @Test void A22_insertionSort() {
+        int[] a = {5,2,8,1,9}; Algorithms.insertionSort(a);
+        assertArrayEquals(new int[]{1,2,5,8,9}, a);
+    }
+    @Test void A23_lcm() { assertEquals(12, Algorithms.lcm(4, 6)); }
+    @Test void A24_eulerTotient() { assertEquals(4, Algorithms.eulerTotient(10)); }
+    @Test void A25_kmp() {
+        assertEquals(2, Algorithms.kmpSearch("hello world", "llo"));
+        assertEquals(-1, Algorithms.kmpSearch("hello", "xyz"));
+    }
+    @Test void A26_rabinKarp() {
+        assertEquals(2, Algorithms.rabinKarp("hello world", "llo"));
+        assertEquals(-1, Algorithms.rabinKarp("hello", "xyz"));
+    }
+    @Test void A27_trie() {
+        var t = new Algorithms.Trie();
+        t.insert("cat"); t.insert("car");
+        assertTrue(t.search("cat")); assertFalse(t.search("cap"));
+        assertTrue(t.startsWith("ca"));
+    }
+    @Test void A28_subsets() {
+        var s = Algorithms.subsets(new int[]{1,2});
+        assertEquals(4, s.size());
+        assertTrue(s.contains(List.of())); assertTrue(s.contains(List.of(1,2)));
+    }
+    @Test void A29_permutations() {
+        assertEquals(6, Algorithms.permutations(new int[]{1,2,3}).size());
+    }
+    @Test void A30_nQueens() { assertEquals(2, Algorithms.nQueens(4)); }
+    @Test void A31_segmentTree() {
+        var st = new Algorithms.SegmentTree(new int[]{1,3,5,7,9});
+        assertEquals(25, st.query(0,4));
+        st.update(1, 10); assertEquals(32, st.query(0,4));
+    }
 }
+
