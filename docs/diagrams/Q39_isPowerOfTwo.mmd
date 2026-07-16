@@ -1,0 +1,11 @@
+graph TD
+    START["Is power of two"]
+    N0["n 0"]
+    START --> N0
+    N1["n and n-1 0"]
+    N0 --> N1
+    N2["Return bool"]
+    N1 --> N2
+    N3["Else false"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

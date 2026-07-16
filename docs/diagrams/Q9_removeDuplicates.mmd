@@ -1,0 +1,11 @@
+graph TD
+    START["Remove duplicates in-place"]
+    N0["i slow pointer"]
+    START --> N0
+    N1["j fast pointer"]
+    N0 --> N1
+    N2["If a j ! a i copy"]
+    N1 --> N2
+    N3["Return slow plus 1"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Merge two sorted lists"]
+    N0["Dummy head"]
+    START --> N0
+    N1["Pick smaller node"]
+    N0 --> N1
+    N2["Advance"]
+    N1 --> N2
+    N3["Attach remainder"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

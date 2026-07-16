@@ -1,0 +1,11 @@
+graph TD
+    START["Interpolation search"]
+    N0["lo hi"]
+    START --> N0
+    N1["pos by value ratio"]
+    N0 --> N1
+    N2["Compare"]
+    N1 --> N2
+    N3["Narrow range"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

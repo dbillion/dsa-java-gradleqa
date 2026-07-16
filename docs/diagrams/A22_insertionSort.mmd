@@ -1,0 +1,11 @@
+graph TD
+    START["Insertion sort"]
+    N0["For i 1..n"]
+    START --> N0
+    N1["Key a i"]
+    N0 --> N1
+    N2["Shift larger left"]
+    N1 --> N2
+    N3["Insert"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

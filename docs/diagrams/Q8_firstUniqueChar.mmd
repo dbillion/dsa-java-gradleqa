@@ -1,0 +1,11 @@
+graph TD
+    START["First unique char"]
+    N0["Count freq per char"]
+    START --> N0
+    N1["Scan for count 1"]
+    N0 --> N1
+    N2["Return its index"]
+    N1 --> N2
+    N3["Else -1"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Segment tree range sum"]
+    N0["Build from array"]
+    START --> N0
+    N1["Query range"]
+    N0 --> N1
+    N2["Update point"]
+    N1 --> N2
+    N3["Push up"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

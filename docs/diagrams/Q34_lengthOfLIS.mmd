@@ -1,0 +1,11 @@
+graph TD
+    START["Longest increasing subseq"]
+    N0["tails list"]
+    START --> N0
+    N1["Binary search insert"]
+    N0 --> N1
+    N2["Replace or append"]
+    N1 --> N2
+    N3["Len tails size"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

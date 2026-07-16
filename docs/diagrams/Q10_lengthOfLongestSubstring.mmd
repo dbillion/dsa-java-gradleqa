@@ -1,0 +1,11 @@
+graph TD
+    START["Longest substring no repeat"]
+    N0["Map char to last index"]
+    START --> N0
+    N1["left max left and prev plus 1"]
+    N0 --> N1
+    N2["len i minus left plus 1"]
+    N1 --> N2
+    N3["Track max"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

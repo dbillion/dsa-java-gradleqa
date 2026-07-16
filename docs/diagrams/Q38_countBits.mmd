@@ -1,0 +1,11 @@
+graph TD
+    START["Count bits popcount"]
+    N0["dp 0 0"]
+    START --> N0
+    N1["dp i dp i and i-1 plus 1"]
+    N0 --> N1
+    N2["Fill array"]
+    N1 --> N2
+    N3["Return bits"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

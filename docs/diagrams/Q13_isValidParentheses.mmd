@@ -1,0 +1,11 @@
+graph TD
+    START["Valid parentheses"]
+    N0["Stack"]
+    START --> N0
+    N1["Push open"]
+    N0 --> N1
+    N2["Pop on close match"]
+    N1 --> N2
+    N3["Empty at end"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

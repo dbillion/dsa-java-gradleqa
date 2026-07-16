@@ -1,0 +1,11 @@
+graph TD
+    START["Max tree depth"]
+    N0["If null depth 0"]
+    START --> N0
+    N1["Left depth left"]
+    N0 --> N1
+    N2["Right depth right"]
+    N1 --> N2
+    N3["Return 1 plus max"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["3Sum"]
+    N0["Sort array"]
+    START --> N0
+    N1["Fix i scan j k"]
+    N0 --> N1
+    N2["Skip duplicates"]
+    N1 --> N2
+    N3["Collect triples sum 0"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

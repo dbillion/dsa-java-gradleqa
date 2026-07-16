@@ -1,0 +1,11 @@
+graph TD
+    START["Course schedule topo"]
+    N0["Build graph indegree"]
+    START --> N0
+    N1["Queue indegree 0"]
+    N0 --> N1
+    N2["Remove edges"]
+    N1 --> N2
+    N3["All removed?"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

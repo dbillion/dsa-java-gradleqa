@@ -1,0 +1,11 @@
+graph TD
+    START["GCD Euclid"]
+    N0["While b ! 0"]
+    START --> N0
+    N1["temp b"]
+    N0 --> N1
+    N2["b a mod b"]
+    N1 --> N2
+    N3["a temp"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

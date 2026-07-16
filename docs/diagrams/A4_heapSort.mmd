@@ -1,0 +1,11 @@
+graph TD
+    START["Heap sort"]
+    N0["Build max-heap"]
+    START --> N0
+    N1["Swap root end"]
+    N0 --> N1
+    N2["Heapify down"]
+    N1 --> N2
+    N3["Repeat"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

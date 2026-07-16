@@ -1,0 +1,11 @@
+graph TD
+    START["Missing number"]
+    N0["Xor 0..n"]
+    START --> N0
+    N1["Xor all array values"]
+    N0 --> N1
+    N2["Remaining xor is missing"]
+    N1 --> N2
+    N3["Return it"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

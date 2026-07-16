@@ -1,0 +1,11 @@
+graph TD
+    START["Level-order traversal"]
+    N0["Queue root"]
+    START --> N0
+    N1["While not empty"]
+    N0 --> N1
+    N2["Poll add children"]
+    N1 --> N2
+    N3["Per level"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

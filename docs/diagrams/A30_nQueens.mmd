@@ -1,0 +1,11 @@
+graph TD
+    START["N-Queens"]
+    N0["Place row"]
+    START --> N0
+    N1["Check attacks"]
+    N0 --> N1
+    N2["Recurse next"]
+    N1 --> N2
+    N3["Count solutions"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

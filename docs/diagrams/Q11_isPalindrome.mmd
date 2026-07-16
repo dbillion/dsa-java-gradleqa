@@ -1,0 +1,11 @@
+graph TD
+    START["Valid palindrome"]
+    N0["Two pointers lo hi"]
+    START --> N0
+    N1["Skip non-alnum"]
+    N0 --> N1
+    N2["Compare lowercased"]
+    N1 --> N2
+    N3["Return equal"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

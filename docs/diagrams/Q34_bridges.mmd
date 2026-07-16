@@ -1,0 +1,11 @@
+graph TD
+    START["Bridge edges Tarjan"]
+    N0["DFS disc low"]
+    START --> N0
+    N1["low v from child"]
+    N0 --> N1
+    N2["low u from back edge"]
+    N1 --> N2
+    N3["low v disc u bridge"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

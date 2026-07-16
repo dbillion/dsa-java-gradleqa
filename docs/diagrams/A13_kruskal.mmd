@@ -1,0 +1,11 @@
+graph TD
+    START["Kruskal MST"]
+    N0["Sort edges"]
+    START --> N0
+    N1["Union-find"]
+    N0 --> N1
+    N2["Skip if cycle"]
+    N1 --> N2
+    N3["Add edge"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Remove nth from end"]
+    N0["Fast ahead n"]
+    START --> N0
+    N1["Slow with dummy"]
+    N0 --> N1
+    N2["Advance both"]
+    N1 --> N2
+    N3["Unlink node"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Merge two sorted arrays"]
+    N0["i j at 0"]
+    START --> N0
+    N1["While both pick smaller"]
+    N0 --> N1
+    N2["Append and advance"]
+    N1 --> N2
+    N3["Append remainder"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Lowest set bit"]
+    N0["n and -n"]
+    START --> N0
+    N1["Returns isolated bit"]
+    N0 --> N1
+    N2["Mask"]
+    N1 --> N2
+    N3["Return value"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

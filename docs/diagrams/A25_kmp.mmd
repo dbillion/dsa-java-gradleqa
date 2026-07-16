@@ -1,0 +1,11 @@
+graph TD
+    START["KMP search"]
+    N0["Build LPS"]
+    START --> N0
+    N1["Scan text"]
+    N0 --> N1
+    N2["Mismatch use LPS"]
+    N1 --> N2
+    N3["Match at end"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

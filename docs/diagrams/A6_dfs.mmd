@@ -1,0 +1,11 @@
+graph TD
+    START["Depth-first search"]
+    N0["Stack or recurse"]
+    START --> N0
+    N1["Mark visited"]
+    N0 --> N1
+    N2["Go deep"]
+    N1 --> N2
+    N3["Backtrack"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

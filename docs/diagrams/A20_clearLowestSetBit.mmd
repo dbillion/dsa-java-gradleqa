@@ -1,0 +1,11 @@
+graph TD
+    START["Clear lowest set bit"]
+    N0["n and n-1"]
+    START --> N0
+    N1["Drops lowest 1"]
+    N0 --> N1
+    N2["Return value"]
+    N1 --> N2
+    N3["Bit trick"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Union-Find"]
+    N0["Parent array"]
+    START --> N0
+    N1["Find with path compress"]
+    N0 --> N1
+    N2["Union by rank"]
+    N1 --> N2
+    N3["Connected?"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

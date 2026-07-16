@@ -1,0 +1,11 @@
+graph TD
+    START["LCM via GCD"]
+    N0["a gcd times b"]
+    START --> N0
+    N1["Long-safe"]
+    N0 --> N1
+    N2["Return lcm"]
+    N1 --> N2
+    N3["Number theory"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

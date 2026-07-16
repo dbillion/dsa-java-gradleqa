@@ -1,0 +1,11 @@
+graph TD
+    START["First bad version"]
+    N0["lo 1 hi n"]
+    START --> N0
+    N1["mid"]
+    N0 --> N1
+    N2["If isBad mid else mid-1"]
+    N1 --> N2
+    N3["Return lo"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

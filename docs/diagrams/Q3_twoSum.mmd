@@ -1,0 +1,11 @@
+graph TD
+    START["Two Sum"]
+    N0["Put num to index in map"]
+    START --> N0
+    N1["For each x look for target minus x"]
+    N0 --> N1
+    N2["If found return pair"]
+    N1 --> N2
+    N3["Else store x"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

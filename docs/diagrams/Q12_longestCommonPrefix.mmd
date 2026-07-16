@@ -1,0 +1,11 @@
+graph TD
+    START["Longest common prefix"]
+    N0["Prefix first word"]
+    START --> N0
+    N1["Trim while not startsWith"]
+    N0 --> N1
+    N2["Return prefix"]
+    N1 --> N2
+    N3["Empty if none"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

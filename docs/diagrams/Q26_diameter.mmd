@@ -1,0 +1,11 @@
+graph TD
+    START["Tree diameter"]
+    N0["DFS returns depth"]
+    START --> N0
+    N1["diameter left plus right"]
+    N0 --> N1
+    N2["Track max"]
+    N1 --> N2
+    N3["Return depth"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

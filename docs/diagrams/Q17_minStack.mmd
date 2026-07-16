@@ -1,0 +1,11 @@
+graph TD
+    START["Min stack"]
+    N0["Two stacks vals and mins"]
+    START --> N0
+    N1["push updates min"]
+    N0 --> N1
+    N2["pop pops both"]
+    N1 --> N2
+    N3["getMin reads top"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

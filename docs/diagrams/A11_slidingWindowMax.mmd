@@ -1,0 +1,11 @@
+graph TD
+    START["Sliding window maximum"]
+    N0["Deque indices"]
+    START --> N0
+    N1["Maintain decreasing"]
+    N0 --> N1
+    N2["Drop out-of-window"]
+    N1 --> N2
+    N3["Front is max"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

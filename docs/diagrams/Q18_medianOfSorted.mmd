@@ -1,0 +1,11 @@
+graph TD
+    START["Median of two sorted"]
+    N0["Partition both arrays"]
+    START --> N0
+    N1["Left half all right"]
+    N0 --> N1
+    N2["Balance sizes"]
+    N1 --> N2
+    N3["Median from mids"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

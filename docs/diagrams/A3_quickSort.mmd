@@ -1,0 +1,11 @@
+graph TD
+    START["Quick sort"]
+    N0["Pick pivot"]
+    START --> N0
+    N1["Partition"]
+    N0 --> N1
+    N2["Recurse sides"]
+    N1 --> N2
+    N3["In-place"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

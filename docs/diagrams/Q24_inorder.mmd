@@ -1,0 +1,11 @@
+graph TD
+    START["In-order traversal"]
+    N0["If null return"]
+    START --> N0
+    N1["Recurse left"]
+    N0 --> N1
+    N2["Visit node"]
+    N1 --> N2
+    N3["Recurse right"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Connected components"]
+    N0["Union-find"]
+    START --> N0
+    N1["For each edge union"]
+    N0 --> N1
+    N2["Count roots"]
+    N1 --> N2
+    N3["Return count"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

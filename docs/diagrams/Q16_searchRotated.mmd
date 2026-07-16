@@ -1,0 +1,11 @@
+graph TD
+    START["Search in rotated sorted"]
+    N0["Find rotation pivot"]
+    START --> N0
+    N1["Binary search both halves"]
+    N0 --> N1
+    N2["Compare with mid"]
+    N1 --> N2
+    N3["Return index or -1"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Queue with two stacks"]
+    N0["inStack outStack"]
+    START --> N0
+    N1["Push to in"]
+    N0 --> N1
+    N2["Pop from out refill"]
+    N1 --> N2
+    N3["Return front"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

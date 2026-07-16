@@ -1,0 +1,11 @@
+graph TD
+    START["Reverse linked list"]
+    N0["prev null cur head"]
+    START --> N0
+    N1["next cur next"]
+    N0 --> N1
+    N2["cur next prev"]
+    N1 --> N2
+    N3["Advance"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

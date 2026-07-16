@@ -1,0 +1,11 @@
+graph TD
+    START["Generate subsets backtrack"]
+    N0["Result list"]
+    START --> N0
+    N1["Choose include"]
+    N0 --> N1
+    N2["Recurse"]
+    N1 --> N2
+    N3["Exclude"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

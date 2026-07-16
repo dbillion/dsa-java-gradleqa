@@ -1,0 +1,11 @@
+graph TD
+    START["Run-length encode"]
+    N0["i at 0"]
+    START --> N0
+    N1["Count run of same char"]
+    N0 --> N1
+    N2["Append count char"]
+    N1 --> N2
+    N3["Advance i"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

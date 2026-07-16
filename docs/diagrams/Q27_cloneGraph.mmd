@@ -1,0 +1,11 @@
+graph TD
+    START["Clone graph"]
+    N0["Map old to new"]
+    START --> N0
+    N1["BFS clone neighbors"]
+    N0 --> N1
+    N2["Link copies"]
+    N1 --> N2
+    N3["Return clone"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

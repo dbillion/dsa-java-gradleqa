@@ -1,0 +1,11 @@
+graph TD
+    START["0-1 knapsack"]
+    N0["dp weight 0"]
+    START --> N0
+    N1["For each item"]
+    N0 --> N1
+    N2["Take or skip"]
+    N1 --> N2
+    N3["Return dp W"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

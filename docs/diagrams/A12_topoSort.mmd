@@ -1,0 +1,11 @@
+graph TD
+    START["Topological sort"]
+    N0["Indegree count"]
+    START --> N0
+    N1["Queue zero"]
+    N0 --> N1
+    N2["Remove edges"]
+    N1 --> N2
+    N3["Append order"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

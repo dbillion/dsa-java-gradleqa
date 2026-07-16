@@ -1,0 +1,11 @@
+graph TD
+    START["Circular queue"]
+    N0["Fixed array head tail"]
+    START --> N0
+    N1["Enqueue at tail mod n"]
+    N0 --> N1
+    N2["Dequeue at head mod n"]
+    N1 --> N2
+    N3["Full when size n"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

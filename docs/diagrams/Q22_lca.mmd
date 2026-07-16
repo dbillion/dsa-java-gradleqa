@@ -1,0 +1,11 @@
+graph TD
+    START["Lowest common ancestor"]
+    N0["If null or equal return"]
+    START --> N0
+    N1["If target in left go left"]
+    N0 --> N1
+    N2["Else go right"]
+    N1 --> N2
+    N3["Return found"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

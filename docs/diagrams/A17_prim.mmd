@@ -1,0 +1,11 @@
+graph TD
+    START["Prim MST"]
+    N0["Start node"]
+    START --> N0
+    N1["Min-heap edges"]
+    N0 --> N1
+    N2["Add unvisited"]
+    N1 --> N2
+    N3["Grow tree"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Climb stairs"]
+    N0["dp0 dp1 1"]
+    START --> N0
+    N1["For i step"]
+    N0 --> N1
+    N2["cur dp0 plus dp1"]
+    N1 --> N2
+    N3["Shift"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

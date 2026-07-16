@@ -1,0 +1,11 @@
+graph TD
+    START["Coin change min coins"]
+    N0["dp inf init"]
+    START --> N0
+    N1["dp 0 0"]
+    N0 --> N1
+    N2["For each coin update"]
+    N1 --> N2
+    N3["Return dp or -1"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

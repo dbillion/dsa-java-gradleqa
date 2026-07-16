@@ -1,0 +1,11 @@
+graph TD
+    START["Fibonacci"]
+    N0["Base 0 1"]
+    START --> N0
+    N1["Iterate a b"]
+    N0 --> N1
+    N2["c a plus b"]
+    N1 --> N2
+    N3["Shift"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

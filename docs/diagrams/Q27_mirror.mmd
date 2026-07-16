@@ -1,0 +1,11 @@
+graph TD
+    START["Mirror tree"]
+    N0["If null return"]
+    START --> N0
+    N1["Swap left right"]
+    N0 --> N1
+    N2["Recurse both"]
+    N1 --> N2
+    N3["Return root"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Validate BST"]
+    N0["If null true"]
+    START --> N0
+    N1["In-order prev cur"]
+    N0 --> N1
+    N2["Track prev"]
+    N1 --> N2
+    N3["No violation true"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

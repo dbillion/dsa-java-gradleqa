@@ -1,0 +1,11 @@
+graph TD
+    START["Number of islands"]
+    N0["Grid scan"]
+    START --> N0
+    N1["On land DFS sink"]
+    N0 --> N1
+    N2["Count starts"]
+    N1 --> N2
+    N3["Return count"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

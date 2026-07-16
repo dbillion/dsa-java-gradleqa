@@ -1,0 +1,11 @@
+graph TD
+    START["Undirected cycle"]
+    N0["Union-find edges"]
+    START --> N0
+    N1["Same root cycle"]
+    N0 --> N1
+    N2["Union else"]
+    N1 --> N2
+    N3["Return flag"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

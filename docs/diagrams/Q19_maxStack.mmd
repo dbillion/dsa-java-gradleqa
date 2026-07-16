@@ -1,0 +1,11 @@
+graph TD
+    START["Max stack"]
+    N0["Stack of pairs value max"]
+    START --> N0
+    N1["push updates max"]
+    N0 --> N1
+    N2["pop pops pair"]
+    N1 --> N2
+    N3["getMax reads top max"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Trie insert search"]
+    N0["Root node"]
+    START --> N0
+    N1["Follow chars"]
+    N0 --> N1
+    N2["Mark end"]
+    N1 --> N2
+    N3["Search prefix"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

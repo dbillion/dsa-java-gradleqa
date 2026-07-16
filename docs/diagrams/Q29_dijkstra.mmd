@@ -1,0 +1,11 @@
+graph TD
+    START["Dijkstra shortest path"]
+    N0["Dist 0 others inf"]
+    START --> N0
+    N1["Min-heap source"]
+    N0 --> N1
+    N2["Relax neighbors"]
+    N1 --> N2
+    N3["Return dist"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

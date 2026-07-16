@@ -1,0 +1,11 @@
+graph TD
+    START["Same tree"]
+    N0["Both null true"]
+    START --> N0
+    N1["Values equal"]
+    N0 --> N1
+    N2["Recurse left right"]
+    N1 --> N2
+    N3["Else false"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

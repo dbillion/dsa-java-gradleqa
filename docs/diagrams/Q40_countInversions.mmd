@@ -1,0 +1,11 @@
+graph TD
+    START["Count inversions merge"]
+    N0["Merge sort"]
+    START --> N0
+    N1["Count split inv"]
+    N0 --> N1
+    N2["Add left right"]
+    N1 --> N2
+    N3["Return total"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Kadane via prefix sums"]
+    N0["Track running prefix sum"]
+    START --> N0
+    N1["minPrefix min so far"]
+    N0 --> N1
+    N2["ans max of prefix minus minPrefix"]
+    N1 --> N2
+    N3["Return ans"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

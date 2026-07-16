@@ -1,0 +1,11 @@
+graph TD
+    START["Bipartite graph"]
+    N0["Color map"]
+    START --> N0
+    N1["BFS alternate colors"]
+    N0 --> N1
+    N2["Conflict false"]
+    N1 --> N2
+    N3["Return true"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

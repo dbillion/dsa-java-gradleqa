@@ -1,0 +1,11 @@
+graph TD
+    START["Array-backed stack"]
+    N0["int array"]
+    START --> N0
+    N1["push increments top"]
+    N0 --> N1
+    N2["pop returns top"]
+    N1 --> N2
+    N3["isEmpty checks top"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

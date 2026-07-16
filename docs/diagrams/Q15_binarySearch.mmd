@@ -1,0 +1,11 @@
+graph TD
+    START["Binary search"]
+    N0["lo 0 hi n-1"]
+    START --> N0
+    N1["mid lo plus hi over 2"]
+    N0 --> N1
+    N2["Compare target"]
+    N1 --> N2
+    N3["Halve range"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

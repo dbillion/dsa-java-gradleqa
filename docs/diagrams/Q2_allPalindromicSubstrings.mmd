@@ -1,0 +1,11 @@
+graph TD
+    START["All palindromic substrings"]
+    N0["For center c in 0..2n"]
+    START --> N0
+    N1["Expand odd length around c"]
+    N0 --> N1
+    N2["Expand even length around c"]
+    N1 --> N2
+    N3["Collect substrings that match"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

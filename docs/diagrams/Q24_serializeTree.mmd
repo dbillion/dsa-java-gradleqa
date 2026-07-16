@@ -1,0 +1,11 @@
+graph TD
+    START["Serialize binary tree"]
+    N0["Queue BFS"]
+    START --> N0
+    N1["Visit node add val"]
+    N0 --> N1
+    N2["Add children"]
+    N1 --> N2
+    N3["Level order list"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Rabin-Karp search"]
+    N0["Hash pattern"]
+    START --> N0
+    N1["Slide window"]
+    N0 --> N1
+    N2["Compare hash"]
+    N1 --> N2
+    N3["Verify match"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

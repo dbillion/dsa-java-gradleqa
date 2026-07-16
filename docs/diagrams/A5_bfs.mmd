@@ -1,0 +1,11 @@
+graph TD
+    START["Breadth-first search"]
+    N0["Queue start"]
+    START --> N0
+    N1["Mark visited"]
+    N0 --> N1
+    N2["Expand neighbors"]
+    N1 --> N2
+    N3["Enqueue"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

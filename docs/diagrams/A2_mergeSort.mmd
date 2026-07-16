@@ -1,0 +1,11 @@
+graph TD
+    START["Merge sort"]
+    N0["Mid split"]
+    START --> N0
+    N1["Recurse halves"]
+    N0 --> N1
+    N2["Merge sorted"]
+    N1 --> N2
+    N3["Return"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Single number xor"]
+    N0["result 0"]
+    START --> N0
+    N1["Xor all"]
+    N0 --> N1
+    N2["Duplicates cancel"]
+    N1 --> N2
+    N3["Return result"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

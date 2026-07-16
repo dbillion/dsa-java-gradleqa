@@ -1,0 +1,11 @@
+graph TD
+    START["Container max area"]
+    N0["left 0 right n-1"]
+    START --> N0
+    N1["area min of h times width"]
+    N0 --> N1
+    N2["Shrink smaller height side"]
+    N1 --> N2
+    N3["Track max area"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

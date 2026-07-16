@@ -1,0 +1,11 @@
+graph TD
+    START["Group anagrams"]
+    N0["For each word sort chars as key"]
+    START --> N0
+    N1["Group by key in map"]
+    N0 --> N1
+    N2["Return grouped lists"]
+    N1 --> N2
+    N3["Stream to list"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

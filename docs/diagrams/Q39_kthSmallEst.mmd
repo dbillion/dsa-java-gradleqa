@@ -1,0 +1,11 @@
+graph TD
+    START["Kth smallest quickselect"]
+    N0["Pick pivot"]
+    START --> N0
+    N1["Partition around pivot"]
+    N0 --> N1
+    N2["Recurse side"]
+    N1 --> N2
+    N3["Return kth"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

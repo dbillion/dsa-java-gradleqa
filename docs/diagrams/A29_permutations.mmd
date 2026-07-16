@@ -1,0 +1,11 @@
+graph TD
+    START["Permutations backtrack"]
+    N0["Swap elements"]
+    START --> N0
+    N1["Recurse"]
+    N0 --> N1
+    N2["Backtrack swap"]
+    N1 --> N2
+    N3["Collect"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

@@ -1,0 +1,11 @@
+graph TD
+    START["Kadane max subarray sum"]
+    N0["Start max cur at 0"]
+    START --> N0
+    N1["For each x cur max of x and cur plus x"]
+    N0 --> N1
+    N2["max max of max and cur"]
+    N1 --> N2
+    N3["Return max"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]

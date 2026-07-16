@@ -1,0 +1,11 @@
+graph TD
+    START["Euler totient"]
+    N0["result n"]
+    START --> N0
+    N1["Factor primes"]
+    N0 --> N1
+    N2["Multiply by 1-1 p"]
+    N1 --> N2
+    N3["Return"]
+    N2 --> N3
+    N3 --> END["assert passes in JUnit"]
