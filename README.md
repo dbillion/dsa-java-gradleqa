@@ -1,24 +1,26 @@
 # DSA Java QA Harness — 40 Questions + 20 Algorithms (and more)
 Run a single algorithm from main() if you add one, or just trust the test suite — each @Test is named after its question/algorithm (e.g. Q3_twoSum, A4_heapSort).
 
-+------------------------+---------------+------------------------------------------------------+
-| Category               | Questions     | Core Algorithms                                      |
-+------------------------+---------------+------------------------------------------------------+
-| Arrays & Hashing       | Q1–Q6, Q8     | A21 selection, A22 insertion                         |
-| Two Pointers & Window  | Q7, Q9, Q10   | A11 sliding window max                               |
-| Strings                | Q11–Q14       | A25 KMP, A26 Rabin-Karp, A27 Trie                    |
-| Binary Search          | Q15–Q18, Q38  | A39 quickselect, Q39 interpolation                   |
-| Linked Lists           | Q19–Q22       | —                                                    |
-| Trees & Graphs         | Q23–Q30, gaps | A16 level-order, A31 segment tree                    |
-| Dynamic Programming    | Q31–Q36, Q40  | A15 LCS, A18 matrix chain                            |
-| Bit Manipulation       | Q37–Q40       | A19, A20 bit tricks                                  |
-| Sorting                | —             | A1 bubble, A2 merge, A3 quick, A4 heap               |
-| Graph Paths            | Q29, Q30      | A13 Kruskal, A17 Prim, Bellman-Ford, Floyd, A*       |
-| Backtracking           | —             | A28 subsets, A29 perms, A30 N-queens                 |
-| Number Theory          | —             | A9 GCD, A10 modPow, A23 LCM, A24 totient             |
-+------------------------+---------------+------------------------------------------------------+
+can you make this md look better in  telegram
 
-
++Run a single algorithm from main() if you add one, or just trust the test suite — each @Test
++is named after its question/algorithm (e.g. Q3_twoSum, A4_heapSort).
+ 
+-| Category | Questions | Core Algorithms |
+-|----------|-----------|-----------------|
+-| Arrays & Hashing | Q1–Q6, Q8 | A21 selection, A22 insertion |
+-| Two Pointers & Window | Q7, Q9, Q10 | A11 sliding window max |
+-| Strings | Q11–Q14 | A25 KMP, A26 Rabin-Karp, A27 Trie |
+-| Binary Search | Q15–Q18, Q38 | A39 quickselect, Q39 interpolation |
+-| Linked Lists | Q19–Q22 | — |
+-| Trees & Graphs | Q23–Q30, Q22–Q27 gaps | A16 level-order, A31 segment tree |
+-| Dynamic Programming | Q31–Q36, Q40 | A15 LCS, A18 matrix chain |
+-| Bit Manipulation | Q37–Q40 | A19, A20 bit tricks |
+-| Sorting | — | A1 bubble, A2 merge, A3 quick, A4 heap |
+-| Graph Paths | Q29, Q30 | A13 Kruskal, A17 Prim, Bellman-Ford, Floyd-Warshall, A* |
+-| Backtracking | — | A28 subsets, A29 perms, A30 N-queens |
+-| Number Theory | — | A9 GCD, A10 modPow, A23 LCM, A24 totient |
++---
 
 > A runnable, tested study guide: **40 DSA interview questions** and **20 core algorithms** from
 > `DSA_Interview_Questions_40_Java.md` + `dsa-ultimate.md`, implemented in **modern Java** (records,
